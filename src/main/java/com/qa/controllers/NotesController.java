@@ -29,11 +29,12 @@ public class NotesController {
     public Note getNote(@PathVariable Long id){
         return repository.findOne(id);
     }
+
     @RequestMapping(value = "notes/{id}", method = RequestMethod.DELETE)
-    public Note deleteNote(@PathVariable Long id){
+    public Boolean deleteNote(@PathVariable Long id){
         Note existing = repository.findOne(id);
         repository.delete(existing);
-        return existing;
+        return true;
     }
 
 

@@ -19,6 +19,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.mockito.Mockito.when;
 
 @RunWith(SpringRunner.class)
@@ -52,17 +53,34 @@ public class NotesControllerTest {
 
     @Test
     public void testGetNote(){
-        List<Note> notesList = new ArrayList<>();
+
         Note note = new Note();
         note.setDescription("blah");
         note.setName("blake");
         note.setId(3l);
-        notesList.add(note);
+
 
         when(repository.findOne(3l)).thenReturn(note);
         assertEquals(notesController.getNote(3l).getName(), "blake");
 
 
     }
+
+    @Test
+    public void testDeleteNote(){
+
+        Note note = new Note();
+        note.setDescription("bark");
+        note.setName("ruff");
+        note.setId(7l);
+
+
+        when(repository.findOne(7l)).thenReturn(note);
+        repository.delete(7l);
+        assertEquals( notesController.deleteNote(7l),true);
+
+
+    }
+
 
 }
