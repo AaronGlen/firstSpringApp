@@ -17,6 +17,6 @@ public class AppTest
     {
         app = new App();
         app.main(new String[]{});
-        assertTrue( true );
+
     }
 }
